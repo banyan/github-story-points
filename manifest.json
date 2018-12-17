@@ -1,0 +1,24 @@
+{
+    "manifest_version": 2,
+    "name": "GitHub Story Points",
+    "description": "Chrome extension to see story points in GitHub projects",
+    "short_name": "GitHub Story Points",
+    "version": "0.0.1",
+    "author": "Kohei Hasegawa",
+    "homepage_url": "https://github.com/banyan/github-story-points",
+    "icons": {
+        "16": "assets/images/icon.png",
+        "48": "assets/images/icon.png",
+        "128": "assets/images/icon.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://github.com/*/*/projects/*"
+            ],
+            "js": [
+                "assets/js/story-points.js"
+            ]
+        }
+    ]
+}
