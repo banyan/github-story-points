@@ -9,3 +9,9 @@
 ### Usage
 
 You need to create issue title stating with `[3pt]` this format and it will accumulate the number of points.
+
+![Example](./assets/images/example.png)
+
+### License
+
+MIT
