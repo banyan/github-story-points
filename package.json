@@ -1,7 +1,8 @@
 {
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "build": "node fuse.js"
+    "build": "node fuse.js",
+    "build:zip": "yarn build && rm -f github-story-points.zip && git archive --format=zip HEAD -o github-story-points.zip"
   },
   "devDependencies": {
     "fuse-box": "^3.6.0",
