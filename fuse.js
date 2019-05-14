@@ -1,4 +1,7 @@
 const { FuseBox } = require("fuse-box");
+const argv = require('yargs').argv;
+
+const isWatch = argv.variant === 'watch';
 
 const fuse = FuseBox.init({
   homeDir: "src",
@@ -6,6 +9,7 @@ const fuse = FuseBox.init({
   output: "dist/$name.js",
 });
 
-fuse.bundle("story-points").instructions(`> story-points.ts`);
+const app = fuse.bundle("story-points").instructions("> [story-points.ts]");
+isWatch && app.watch();
 
 fuse.run();

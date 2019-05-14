@@ -2,10 +2,12 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "build": "node fuse.js",
+    "build:watch": "node fuse --variant watch",
     "build:zip": "yarn build && rm -f github-story-points.zip && git archive --format=zip HEAD -o github-story-points.zip"
   },
   "devDependencies": {
     "fuse-box": "^3.6.0",
-    "typescript": "^3.2.2"
+    "typescript": "^3.2.2",
+    "yargs": "^13.2.4"
   }
 }
