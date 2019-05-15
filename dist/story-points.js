@@ -16,8 +16,7 @@ function debounce(func, wait) {
         }, wait);
     };
 }
-// when all request are not returned, the accurate number wouldn't be applied.
-const debounceWait = 500;
+const debounceWait = 100;
 let state = { closed: 0, open: 0 };
 const columns = () => document.querySelectorAll('.js-project-column');
 const accumulatePoint = (link, point) => {
@@ -97,11 +96,17 @@ const callback = () => {
     state = { closed: 0, open: 0 };
 };
 const observer = new MutationObserver(debounce(callback, debounceWait));
+const targetNode = document.querySelector('.js-project-columns');
 const options = {
     attributes: true,
     subtree: true,
 };
-observer.observe(columns()[columns().length - 1], options);
+if (!!targetNode) {
+    observer.observe(targetNode, options);
+}
+else {
+    throw new Error('.js-project-columns is missing');
+}
 
 });
 return ___scope___.entry = "story-points.js";
