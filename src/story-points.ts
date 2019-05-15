@@ -13,8 +13,7 @@ function debounce<F extends Function>(func: F, wait: number): F {
   });
 }
 
-// when all request are not returned, the accurate number wouldn't be applied.
-const debounceWait = 500;
+const debounceWait = 100;
 
 interface State {
   closed: number;
@@ -121,10 +120,15 @@ const callback = () => {
 };
 
 const observer = new MutationObserver(debounce(callback, debounceWait));
+const targetNode = document.querySelector('.js-project-columns');
 
 const options = {
   attributes: true,
   subtree: true,
 };
 
-observer.observe(columns()[columns().length - 1], options);
+if (!!targetNode) {
+  observer.observe(targetNode, options);
+} else {
+  throw new Error('.js-project-columns is missing');
+}
