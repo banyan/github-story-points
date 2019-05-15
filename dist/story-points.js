@@ -4,18 +4,8 @@ FuseBox.pkg("default", {}, function(___scope___){
 ___scope___.file("story-points.js", function(exports, require, module, __filename, __dirname){
 
 "use strict";
-// taken from https://gist.github.com/fr-ser/ded7690b245223094cd876069456ed6c
-function debounce(func, wait) {
-    let timeoutID;
-    // conversion through any necessary as it wont satisfy criteria otherwise
-    return function (...args) {
-        clearTimeout(timeoutID);
-        const context = this;
-        timeoutID = window.setTimeout(function () {
-            func.apply(context, args);
-        }, wait);
-    };
-}
+Object.defineProperty(exports, "__esModule", { value: true });
+const utils_1 = require("./utils");
 const debounceWait = 100;
 let state = { closed: 0, open: 0 };
 const columns = () => document.querySelectorAll('.js-project-column');
@@ -95,7 +85,7 @@ const callback = () => {
     showTotalPoint();
     state = { closed: 0, open: 0 };
 };
-const observer = new MutationObserver(debounce(callback, debounceWait));
+const observer = new MutationObserver(utils_1.debounce(callback, debounceWait));
 const targetNode = document.querySelector('.js-project-columns');
 const options = {
     attributes: true,
@@ -107,6 +97,24 @@ if (!!targetNode) {
 else {
     throw new Error('.js-project-columns is missing');
 }
+
+});
+___scope___.file("utils.js", function(exports, require, module, __filename, __dirname){
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+// taken from https://gist.github.com/fr-ser/ded7690b245223094cd876069456ed6c
+exports.debounce = (func, waitMs) => {
+    let timeoutID;
+    // conversion through any necessary as it wont satisfy criteria otherwise
+    return function (...args) {
+        clearTimeout(timeoutID);
+        const context = this;
+        timeoutID = window.setTimeout(function () {
+            func.apply(context, args);
+        }, waitMs);
+    };
+};
 
 });
 return ___scope___.entry = "story-points.js";
