@@ -55,7 +55,7 @@ const showTotalPoint = () => {
 };
 const callback = () => {
     columns().forEach(column => {
-        const links = column.querySelectorAll('.js-project-card-issue-link');
+        const links = column.querySelectorAll('.js-project-column-card:not(.d-none) .js-project-card-issue-link');
         const point = getPoint(links);
         const pointNode = column.querySelector('.js-github-story-points-counter');
         if (point === 0 && !pointNode) {
