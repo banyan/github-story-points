@@ -14,6 +14,10 @@ You need to create issue title stating with `[3pt]` this format and it will accu
 
 ![GIF](./assets/sample.gif)
 
+### Demo
+
+You can try [demo project](https://github.com/banyan/github-story-points-sandbox/projects/1) after installed [chrome extension](https://chrome.google.com/webstore/detail/github-story-points/fdhfdpafombnahpjjjcfopmehfofbdko).
+
 ### License
 
 MIT
