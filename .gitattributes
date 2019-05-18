@@ -1,0 +1,12 @@
+.DS_Store export-ignore
+.gitignore export-ignore
+.gitattributes export-ignore
+node_modules export-ignore
+yarn.lock export-ignore
+tsconfig.json export-ignore
+src/ export-ignore
+.prettierrc export-ignore
+package.json export-ignore
+assets/sample.gif export-ignore
+fuse.js export-ignore
+README.md export-ignore
