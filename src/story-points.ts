@@ -1,6 +1,6 @@
 import { debounce } from './utils';
 
-const debounceWait = 100;
+const waitMs = 100;
 
 interface State {
   closed: number;
@@ -107,7 +107,7 @@ const callback = () => {
   state = { closed: 0, open: 0 };
 };
 
-const observer = new MutationObserver(debounce(callback, debounceWait));
+const observer = new MutationObserver(debounce(callback, waitMs));
 const targetNode = document.querySelector('.js-project-columns');
 
 const options = {

@@ -6,7 +6,7 @@ ___scope___.file("story-points.js", function(exports, require, module, __filenam
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const utils_1 = require("./utils");
-const debounceWait = 100;
+const waitMs = 100;
 let state = { closed: 0, open: 0 };
 const columns = () => document.querySelectorAll('.js-project-column');
 const accumulatePoint = (link, point) => {
@@ -83,7 +83,7 @@ const callback = () => {
     showTotalPoint();
     state = { closed: 0, open: 0 };
 };
-const observer = new MutationObserver(utils_1.debounce(callback, debounceWait));
+const observer = new MutationObserver(utils_1.debounce(callback, waitMs));
 const targetNode = document.querySelector('.js-project-columns');
 const options = {
     attributes: true,
