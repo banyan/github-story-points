@@ -12,6 +12,8 @@ You need to create issue title stating with `[3pt]` this format and it will accu
 
 ![Example](./assets/images/example.png)
 
+![GIF](./assets/sample.gif)
+
 ### License
 
 MIT
