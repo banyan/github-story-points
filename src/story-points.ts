@@ -50,14 +50,13 @@ const showTotalPoint = () => {
     const pointNode = document.querySelector(
       '.js-github-story-points-total-counter',
     ) as HTMLSpanElement;
+    const label = `${state.closed}pt / ${state.open + state.closed}pt`;
 
     if (pointNode) {
-      const label = `${state.closed}pt / ${state.open + state.closed}pt`;
       pointNode.innerText = label;
     } else {
       let pointNode = counter.cloneNode(false) as HTMLSpanElement;
       pointNode.classList.add('js-github-story-points-total-counter');
-      const label = `${state.closed}pt / ${state.open + state.closed}pt`;
       pointNode.innerText = label;
       pointNode.removeAttribute('aria-label');
       const menu = document.querySelector(
@@ -81,6 +80,7 @@ const callback = () => {
     const pointNode = column.querySelector(
       '.js-github-story-points-counter',
     ) as HTMLSpanElement;
+    const label = `${point}pt`;
 
     if (point === 0 && !pointNode) {
       return;
@@ -88,14 +88,12 @@ const callback = () => {
       pointNode.remove();
     } else {
       if (pointNode) {
-        const label = `${point}pt`;
         pointNode.innerText = label;
       } else {
         const counter = column.querySelector('.js-column-card-count');
 
         if (counter) {
           let pointNode = counter.cloneNode(false) as HTMLSpanElement;
-          const label = `${point}pt`;
           pointNode.classList.add('js-github-story-points-counter');
           pointNode.innerText = label;
           pointNode.setAttribute('aria-label', label);
