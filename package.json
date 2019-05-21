@@ -3,7 +3,7 @@
     "typecheck": "tsc --noEmit",
     "build": "node fuse.js",
     "build:watch": "node fuse --variant watch",
-    "build:zip": "yarn build && rm -f github-story-points.zip && git archive --format=zip HEAD -o github-story-points.zip"
+    "build:zip": "yarn build && rm -f github-story-points.zip && zip -r github-story-points.zip dist manifest.json assets/images"
   },
   "devDependencies": {
     "fuse-box": "^3.6.0",
