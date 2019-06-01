@@ -27,15 +27,15 @@ const accumulatePoint = (link: HTMLLinkElement, point: number) => {
 const getPoint = (links: NodeList) =>
   Array.from(links)
     .map((link: any) => {
-      const match = link.innerText.match(/\[(\d+)pt\]/);
+      const match = link.innerText.match(/\[(\d+(.\d+)?)pt\]/);
       if (match) {
-        const point = parseInt(match[1]);
+        const point = parseFloat(match[1]);
         accumulatePoint(link, point);
         return point;
       }
     })
     .filter(
-      (n: number | undefined) => typeof n === 'number' && Number.isInteger(n),
+      (n: number | undefined) => typeof n === 'number',
     )
     .reduce(
       (acc: number, n: number | undefined) =>
