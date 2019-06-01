@@ -3,7 +3,7 @@
     "name": "GitHub Story Points",
     "description": "Chrome extension to see story points in GitHub projects",
     "short_name": "GitHub Story Points",
-    "version": "0.2.4",
+    "version": "0.2.5",
     "author": "Kohei Hasegawa",
     "homepage_url": "https://github.com/banyan/github-story-points",
     "icons": {
