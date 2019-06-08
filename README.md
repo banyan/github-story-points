@@ -1,6 +1,9 @@
-# GitHub Story Points
-
-> Chrome extension to see story points in GitHub projects.
+<div align="center">
+  <img src="assets/logo.png" alt="github-story-points" width="600">
+  <br>
+  <b>Chrome extension to see story points in GitHub projects</b>
+  <hr>
+</div>
 
 ### Installation
 
