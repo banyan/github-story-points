@@ -16,9 +16,6 @@
         "contextMenus",
         "activeTab"
     ],
-    "browser_action": {
-        "default_icon": "assets/images/icon.png"
-    },
     "optional_permissions": [
         "http://*/*",
         "https://*/*"
@@ -26,7 +23,8 @@
     "background": {
         "scripts": [
             "dist/background.js"
-        ]
+        ],
+        "persistent": false
     },
     "content_scripts": [
         {
