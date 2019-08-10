@@ -5,6 +5,10 @@
     "build:watch": "node fuse --variant watch",
     "build:zip": "yarn build && rm -f github-story-points.zip && zip -r github-story-points.zip dist manifest.json assets/images"
   },
+  "dependencies": {
+    "webext-domain-permission-toggle": "^1.0.0",
+    "webext-dynamic-content-scripts": "^6.0.3"
+  },
   "devDependencies": {
     "fuse-box": "^3.6.0",
     "typescript": "^3.2.2",
