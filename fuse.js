@@ -12,4 +12,6 @@ const fuse = FuseBox.init({
 const app = fuse.bundle("story-points").instructions("> [story-points.ts]");
 isWatch && app.watch();
 
+fuse.bundle("background").instructions("> background.ts");
+
 fuse.run();
