@@ -11,6 +11,23 @@
         "48": "assets/images/icon.png",
         "128": "assets/images/icon.png"
     },
+    "permissions": [
+        "https://github.com/*",
+        "contextMenus",
+        "activeTab"
+    ],
+    "browser_action": {
+        "default_icon": "icon.png"
+    },
+    "optional_permissions": [
+        "http://*/*",
+        "https://*/*"
+    ],
+    "background": {
+        "scripts": [
+            "dist/background.js"
+        ]
+    },
     "content_scripts": [
         {
             "matches": [
