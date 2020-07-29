@@ -12,11 +12,9 @@ let state: State = { closed: 0, open: 0 };
 const columns = () => document.querySelectorAll('.js-project-column');
 
 const accumulatePoint = (link: HTMLLinkElement, point: number) => {
-  const previousElement = link.previousElementSibling;
-  if (previousElement) {
-    const isClosed = previousElement.querySelector('.octicon-issue-closed');
+  const isClosed = link.querySelector('.octicon-issue-closed');
 
-    if (isClosed === null) {
+  if (isClosed === null) {
       state.open = state.open + point;
     } else {
       state.closed = state.closed + point;
@@ -24,19 +22,21 @@ const accumulatePoint = (link: HTMLLinkElement, point: number) => {
   }
 };
 
+const titleRegex = /\[(\d+(.\d+)?)pt\]/im;
+const labelRegEx = /^sp: ([\d\.]+)$/im;
+
 const getPoint = (links: NodeList) =>
   Array.from(links)
     .map((link: any) => {
-      const match = link.innerText.match(/\[(\d+(.\d+)?)pt\]/);
+      const match =
+        link.innerText.match(titleRegex) || link.innerText.match(labelRegEx);
       if (match) {
         const point = parseFloat(match[1]);
         accumulatePoint(link, point);
         return point;
       }
     })
-    .filter(
-      (n: number | undefined) => typeof n === 'number',
-    )
+    .filter((n: number | undefined) => typeof n === 'number')
     .reduce(
       (acc: number, n: number | undefined) =>
         typeof n === 'number' ? acc + n : 0,
@@ -70,9 +70,9 @@ const showTotalPoint = () => {
 };
 
 const callback = () => {
-  columns().forEach(column => {
+  columns().forEach((column) => {
     const links = column.querySelectorAll(
-      '.js-project-column-card:not(.d-none) .js-project-card-issue-link',
+      '.js-project-column-card:not(.d-none) .js-project-issue-details-container',
     );
 
     const point = getPoint(links);
