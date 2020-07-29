@@ -11,28 +11,37 @@ let state: State = { closed: 0, open: 0 };
 
 const columns = () => document.querySelectorAll('.js-project-column');
 
-const accumulatePoint = (link: HTMLLinkElement, point: number) => {
-  const isClosed = link.querySelector('.octicon-issue-closed');
+const accumulatePoint = (card: HTMLLinkElement, point: number) => {
+  const isClosed = card.querySelector('.octicon-issue-closed');
 
   if (isClosed === null) {
-      state.open = state.open + point;
-    } else {
-      state.closed = state.closed + point;
-    }
+    state.open = state.open + point;
+  } else {
+    state.closed = state.closed + point;
   }
 };
 
 const titleRegex = /\[(\d+(.\d+)?)pt\]/im;
-const labelRegEx = /^sp: ([\d\.]+)$/im;
+const labelRegEx = /^sp:\s?([\d\.]+)$/im;
 
-const getPoint = (links: NodeList) =>
-  Array.from(links)
-    .map((link: any) => {
+const findMatch = (links: HTMLLinkElement[], regex: RegExp) => {
+  const matches = Array.from(links)
+    .map((link) => link.innerText.match(regex))
+    .filter(Boolean);
+  return matches.length > 0 ? matches[0] : null;
+};
+
+const getPoint = (cards: NodeList) =>
+  Array.from(cards)
+    .map((card: any) => {
+      const titles = card.querySelectorAll('.js-project-card-issue-link') || [];
+      const labels = card.querySelectorAll('.issue-card-label') || [];
       const match =
-        link.innerText.match(titleRegex) || link.innerText.match(labelRegEx);
+        findMatch(titles, titleRegex) || findMatch(labels, labelRegEx);
+
       if (match) {
         const point = parseFloat(match[1]);
-        accumulatePoint(link, point);
+        accumulatePoint(card, point);
         return point;
       }
     })
@@ -71,11 +80,11 @@ const showTotalPoint = () => {
 
 const callback = () => {
   columns().forEach((column) => {
-    const links = column.querySelectorAll(
+    const cards = column.querySelectorAll(
       '.js-project-column-card:not(.d-none) .js-project-issue-details-container',
     );
 
-    const point = getPoint(links);
+    const point = getPoint(cards);
 
     const pointNode = column.querySelector(
       '.js-github-story-points-counter',
