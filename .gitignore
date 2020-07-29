@@ -2,3 +2,4 @@ node_modules/
 .fusebox/
 github-story-points.zip
 dist/
+.DS_Store
