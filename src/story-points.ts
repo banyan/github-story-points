@@ -4,10 +4,11 @@ const waitMs = 100;
 
 interface State {
   closed: number;
+  doing: number;
   open: number;
 }
 
-let state: State = { closed: 0, open: 0 };
+let state: State = { closed: 0, doing: 0, open: 0 };
 
 const columns = () => document.querySelectorAll('.js-project-column');
 
@@ -17,7 +18,14 @@ const accumulatePoint = (link: HTMLLinkElement, point: number) => {
     const isClosed = previousElement.querySelector('.octicon-issue-closed');
 
     if (isClosed === null) {
-      state.open = state.open + point;
+      const h3: string = link.closest('.js-project-column')?.querySelector('h3')?.innerText ?? "";
+
+      if (h3 && /(doing|progress)/g.test(h3)) {
+        state.doing = state.doing + point;
+      } else {
+        state.open = state.open + point;
+      }
+    
     } else {
       state.closed = state.closed + point;
     }
@@ -43,6 +51,21 @@ const getPoint = (links: NodeList) =>
       0,
     );
 
+const setProgress = (progressBar: HTMLElement) => {
+  const progressBarContainer = progressBar.closest(".js-socket-channel.js-updatable-content");
+  if (progressBarContainer) {
+    progressBarContainer.removeAttribute('data-channel');
+    progressBarContainer.removeAttribute('data-url');
+    progressBarContainer.classList.remove('js-socket-channel', 'js-updatable-content');
+  }
+  
+  (progressBar.querySelector('.bg-green') as HTMLSpanElement)
+      .style.width = `${state.closed / (state.closed + state.doing + state.open) * 100}%`;
+
+  (progressBar.querySelector('.bg-purple') as HTMLSpanElement)
+      .style.width = `${state.doing / (state.closed + state.doing + state.open) * 100}%`;    
+};
+
 const showTotalPoint = () => {
   const counter = document.querySelector('.js-column-card-count');
 
@@ -50,7 +73,12 @@ const showTotalPoint = () => {
     const pointNode = document.querySelector(
       '.js-github-story-points-total-counter',
     ) as HTMLSpanElement;
-    const label = `${state.closed}pt / ${state.open + state.closed}pt`;
+    const label = `${state.closed}pt / ${state.open + state.doing + state.closed}pt`;
+
+    const progressBar = document.querySelector(
+      '.progress-bar.progress-bar-small'
+    ) as HTMLSpanElement;
+    setProgress(progressBar);
 
     if (pointNode) {
       pointNode.innerText = label;
@@ -104,7 +132,7 @@ const callback = () => {
   });
 
   showTotalPoint();
-  state = { closed: 0, open: 0 };
+  state = { closed: 0, doing: 0, open: 0 };
 };
 
 const observer = new MutationObserver(debounce(callback, waitMs));
