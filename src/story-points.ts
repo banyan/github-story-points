@@ -55,6 +55,7 @@ const setProgress = (progressBar: HTMLElement) => {
     '.js-socket-channel.js-updatable-content',
   );
   if (progressBarContainer) {
+    // prevent github to overwrite the width of the bars.
     progressBarContainer.removeAttribute('data-channel');
     progressBarContainer.removeAttribute('data-url');
     progressBarContainer.classList.remove(
