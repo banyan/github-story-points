@@ -18,14 +18,15 @@ const accumulatePoint = (link: HTMLLinkElement, point: number) => {
     const isClosed = previousElement.querySelector('.octicon-issue-closed');
 
     if (isClosed === null) {
-      const h3: string = link.closest('.js-project-column')?.querySelector('h3')?.innerText ?? "";
+      const h3: string =
+        link.closest('.js-project-column')?.querySelector('h3')?.innerText ??
+        '';
 
       if (h3 && /(doing|progress)/g.test(h3)) {
         state.doing = state.doing + point;
       } else {
         state.open = state.open + point;
       }
-    
     } else {
       state.closed = state.closed + point;
     }
@@ -42,9 +43,7 @@ const getPoint = (links: NodeList) =>
         return point;
       }
     })
-    .filter(
-      (n: number | undefined) => typeof n === 'number',
-    )
+    .filter((n: number | undefined) => typeof n === 'number')
     .reduce(
       (acc: number, n: number | undefined) =>
         typeof n === 'number' ? acc + n : 0,
@@ -52,18 +51,25 @@ const getPoint = (links: NodeList) =>
     );
 
 const setProgress = (progressBar: HTMLElement) => {
-  const progressBarContainer = progressBar.closest(".js-socket-channel.js-updatable-content");
+  const progressBarContainer = progressBar.closest(
+    '.js-socket-channel.js-updatable-content',
+  );
   if (progressBarContainer) {
     progressBarContainer.removeAttribute('data-channel');
     progressBarContainer.removeAttribute('data-url');
-    progressBarContainer.classList.remove('js-socket-channel', 'js-updatable-content');
+    progressBarContainer.classList.remove(
+      'js-socket-channel',
+      'js-updatable-content',
+    );
   }
-  
-  (progressBar.querySelector('.bg-green') as HTMLSpanElement)
-      .style.width = `${state.closed / (state.closed + state.doing + state.open) * 100}%`;
 
-  (progressBar.querySelector('.bg-purple') as HTMLSpanElement)
-      .style.width = `${state.doing / (state.closed + state.doing + state.open) * 100}%`;    
+  (progressBar.querySelector('.bg-green') as HTMLSpanElement).style.width = `${
+    (state.closed / (state.closed + state.doing + state.open)) * 100
+  }%`;
+
+  (progressBar.querySelector('.bg-purple') as HTMLSpanElement).style.width = `${
+    (state.doing / (state.closed + state.doing + state.open)) * 100
+  }%`;
 };
 
 const showTotalPoint = () => {
@@ -73,10 +79,12 @@ const showTotalPoint = () => {
     const pointNode = document.querySelector(
       '.js-github-story-points-total-counter',
     ) as HTMLSpanElement;
-    const label = `${state.closed}pt / ${state.open + state.doing + state.closed}pt`;
+    const label = `${state.closed}pt / ${
+      state.open + state.doing + state.closed
+    }pt`;
 
     const progressBar = document.querySelector(
-      '.progress-bar.progress-bar-small'
+      '.progress-bar.progress-bar-small',
     ) as HTMLSpanElement;
     setProgress(progressBar);
 
@@ -98,7 +106,7 @@ const showTotalPoint = () => {
 };
 
 const callback = () => {
-  columns().forEach(column => {
+  columns().forEach((column) => {
     const links = column.querySelectorAll(
       '.js-project-column-card:not(.d-none) .js-project-card-issue-link',
     );
