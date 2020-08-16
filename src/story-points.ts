@@ -1,6 +1,6 @@
 import { debounce } from './utils';
 
-const waitMs = 100;
+const waitMs = 500;
 
 interface State {
   closed: number;
