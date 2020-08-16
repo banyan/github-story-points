@@ -1,6 +1,6 @@
 import { debounce } from './utils';
 
-const waitMs = 100;
+const waitMs = 500;
 
 interface State {
   closed: number;
@@ -22,7 +22,7 @@ const accumulatePoint = (link: HTMLLinkElement, point: number) => {
         link.closest('.js-project-column')?.querySelector('h3')?.innerText ??
         '';
 
-      if (h3 && /(doing|progress)/g.test(h3)) {
+      if (h3 && /(doing|progress|wip)/i.test(h3)) {
         state.doing = state.doing + point;
       } else {
         state.open = state.open + point;
@@ -55,6 +55,7 @@ const setProgress = (progressBar: HTMLElement) => {
     '.js-socket-channel.js-updatable-content',
   );
   if (progressBarContainer) {
+    // prevent github to overwrite the width of the bars.
     progressBarContainer.removeAttribute('data-channel');
     progressBarContainer.removeAttribute('data-url');
     progressBarContainer.classList.remove(
