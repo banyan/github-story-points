@@ -14,6 +14,6 @@
     "fuse-box": "^3.6.0",
     "prettier": "^2.0.5",
     "typescript": "^3.9.7",
-    "yargs": "^13.2.4"
+    "yargs": "^15.4.1"
   }
 }
