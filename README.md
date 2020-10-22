@@ -28,3 +28,7 @@ MIT
 
 [link-cws]: https://chrome.google.com/webstore/detail/github-story-points/fdhfdpafombnahpjjjcfopmehfofbdko "Version published on Chrome Web Store"
 [link-amo]: https://addons.mozilla.org/en-US/firefox/addon/github-story-points/ "Version published on Mozilla Add-ons"
+
+### Privacy Policy
+
+No data or personal information is collected by this browser extension.
