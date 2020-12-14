@@ -12,7 +12,9 @@
 
 ### Usage
 
-You need to create issue with a title starting with `[Xpt]` or with add a label `sp: X` to accumulate the number of points.
+You can now add story points to your project board easily. Either create your issue with a title starting with `[Xpt]` or simply add a label `sp: X`.
+
+GSP woill count them for you and even show `Closed/Total`.
 
 ![Example](./assets/images/example.png)
 
@@ -20,7 +22,7 @@ You need to create issue with a title starting with `[Xpt]` or with add a label 
 
 ### Develop
 
-To develop locally:
+To develop locally on Chrome:
 
 - Build your extension using `yarn build`.
 - Go to `chrome://extensions/` and activate the developer mode (tutorial [here](https://support.google.com/chrome/a/answer/2714278?hl=en) ).
@@ -29,11 +31,15 @@ To develop locally:
 
 ### Demo
 
-You can try [demo project](https://github.com/banyan/github-story-points-sandbox/projects/1) after installed extension.
+You can try [demo project](https://github.com/banyan/github-story-points-sandbox/projects/1) after you installed the extension.
 
 ### License
 
 MIT
 
-[link-cws]: https://chrome.google.com/webstore/detail/github-story-points/fdhfdpafombnahpjjjcfopmehfofbdko 'Version published on Chrome Web Store'
-[link-amo]: https://addons.mozilla.org/en-US/firefox/addon/github-story-points/ 'Version published on Mozilla Add-ons'
+[link-cws]: https://chrome.google.com/webstore/detail/github-story-points/macalhhnmnhceejcjhbgdfidpeeamhep'Version published on Chrome Web Store'
+[link-amo]: https://addons.mozilla.org/en-US/firefox/addon/github-project-story-points/ 'Version published on Mozilla Add-ons'
+
+### Credits
+
+This extension is built on the great work of Kohei Hasegawa, https://github.com/banyan/github-story-points
