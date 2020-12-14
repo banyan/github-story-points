@@ -11,32 +11,41 @@ let state: State = { closed: 0, open: 0 };
 
 const columns = () => document.querySelectorAll('.js-project-column');
 
-const accumulatePoint = (link: HTMLLinkElement, point: number) => {
-  const previousElement = link.previousElementSibling;
-  if (previousElement) {
-    const isClosed = previousElement.querySelector('.octicon-issue-closed');
+const accumulatePoint = (card: HTMLLinkElement, point: number) => {
+  const isClosed = card.querySelector('.octicon-issue-closed');
 
-    if (isClosed === null) {
-      state.open = state.open + point;
-    } else {
-      state.closed = state.closed + point;
-    }
+  if (isClosed === null) {
+    state.open = state.open + point;
+  } else {
+    state.closed = state.closed + point;
   }
 };
 
-const getPoint = (links: NodeList) =>
-  Array.from(links)
-    .map((link: any) => {
-      const match = link.innerText.match(/\[(\d+(.\d+)?)pt\]/);
+const titleRegex = /\[(\d+(.\d+)?)pt\]/im;
+const labelRegEx = /^sp:\s?([\d\.]+)$/im;
+
+const findMatch = (links: HTMLLinkElement[], regex: RegExp) => {
+  const matches = Array.from(links)
+    .map((link) => link.innerText.match(regex))
+    .filter(Boolean);
+  return matches.length > 0 ? matches[0] : null;
+};
+
+const getPoint = (cards: NodeList) =>
+  Array.from(cards)
+    .map((card: any) => {
+      const titles = card.querySelectorAll('.js-project-card-issue-link') || [];
+      const labels = card.querySelectorAll('.issue-card-label') || [];
+      const match =
+        findMatch(titles, titleRegex) || findMatch(labels, labelRegEx);
+
       if (match) {
         const point = parseFloat(match[1]);
-        accumulatePoint(link, point);
+        accumulatePoint(card, point);
         return point;
       }
     })
-    .filter(
-      (n: number | undefined) => typeof n === 'number',
-    )
+    .filter((n: number | undefined) => typeof n === 'number')
     .reduce(
       (acc: number, n: number | undefined) =>
         typeof n === 'number' ? acc + n : 0,
@@ -70,12 +79,12 @@ const showTotalPoint = () => {
 };
 
 const callback = () => {
-  columns().forEach(column => {
-    const links = column.querySelectorAll(
-      '.js-project-column-card:not(.d-none) .js-project-card-issue-link',
+  columns().forEach((column) => {
+    const cards = column.querySelectorAll(
+      '.js-project-column-card:not(.d-none) .js-project-issue-details-container',
     );
 
-    const point = getPoint(links);
+    const point = getPoint(cards);
 
     const pointNode = column.querySelector(
       '.js-github-story-points-counter',
