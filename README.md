@@ -18,7 +18,9 @@ GSP woill count them for you and even show `Closed/Total`.
 
 ![Example](./assets/images/example.png)
 
-![GIF](./assets/sample.gif)
+### Demo
+
+You can try [demo project](https://github.com/banyan/github-story-points-sandbox/projects/1) after you installed the extension.
 
 ### Develop
 
@@ -29,9 +31,7 @@ To develop locally on Chrome:
 - Finally, click `Load unpacked` and add the folder to the extension.
 - If you make changes, you can simply reload the extension using the reload button in `chrome://extensions/`
 
-### Demo
-
-You can try [demo project](https://github.com/banyan/github-story-points-sandbox/projects/1) after you installed the extension.
+### Deploy to Chrome and Firefox
 
 ### License
 
