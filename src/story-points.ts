@@ -35,7 +35,7 @@ const getPoint = (cards: NodeList) =>
   Array.from(cards)
     .map((card: any) => {
       const titles = card.querySelectorAll('.js-project-card-issue-link') || [];
-      const labels = card.querySelectorAll('.issue-card-label') || [];
+      const labels = card.querySelectorAll('.IssueLabel') || [];
       const match =
         findMatch(titles, titleRegex) || findMatch(labels, labelRegEx);
 
