@@ -21,7 +21,7 @@ const accumulatePoint = (card: HTMLLinkElement, point: number) => {
   }
 };
 
-const titleRegex = /\[(\d+(.\d+)?)pt\]/im;
+const defaultRegex = /\[(\d+(.\d+)?)\s?pt\]/im;
 const labelRegEx = /^sp:\s?([\d\.]+)$/im;
 
 const findMatch = (links: HTMLLinkElement[], regex: RegExp) => {
@@ -36,8 +36,12 @@ const getPoint = (cards: NodeList) =>
     .map((card: any) => {
       const titles = card.querySelectorAll('.js-project-card-issue-link') || [];
       const labels = card.querySelectorAll('.IssueLabel') || [];
+      const githubCards = card.querySelectorAll('.js-comment-body > p') || [];
+
       const match =
-        findMatch(titles, titleRegex) || findMatch(labels, labelRegEx);
+        findMatch(titles, defaultRegex) ||
+        findMatch(labels, labelRegEx) ||
+        findMatch(githubCards, defaultRegex);
 
       if (match) {
         const point = parseFloat(match[1]);
@@ -81,7 +85,7 @@ const showTotalPoint = () => {
 const callback = () => {
   columns().forEach((column) => {
     const cards = column.querySelectorAll(
-      '.js-project-column-card:not(.d-none) .js-project-issue-details-container',
+      '.js-project-column-card:not(.d-none) .js-project-issue-details-container, .js-task-list-container',
     );
 
     const point = getPoint(cards);
