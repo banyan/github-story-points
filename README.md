@@ -7,8 +7,8 @@
 
 ### Install
 
-- [**Chrome** extension][link-cws] [<img valign="middle" src="https://img.shields.io/chrome-web-store/v/fdhfdpafombnahpjjjcfopmehfofbdko.svg?label=%20">][link-cws]
-- [**Firefox** add-on][link-amo] [<img valign="middle" src="https://img.shields.io/amo/v/github-story-points.svg?label=%20">][link-amo]
+- [**Chrome** extension][link-cws] [<img valign="middle" src="https://img.shields.io/chrome-web-store/v/macalhhnmnhceejcjhbgdfidpeeamhep.svg?label=%20">][link-cws]
+- [**Firefox** add-on][link-amo] [<img valign="middle" src="https://img.shields.io/amo/v/github-project-story-points.svg?label=%20">][link-amo]
 
 ### Usage
 
@@ -37,7 +37,7 @@ To develop locally on Chrome:
 
 MIT
 
-[link-cws]: https://chrome.google.com/webstore/detail/github-story-points/macalhhnmnhceejcjhbgdfidpeeamhep'Version published on Chrome Web Store'
+[link-cws]: https://chrome.google.com/webstore/detail/github-story-points/macalhhnmnhceejcjhbgdfidpeeamhep 'Version published on Chrome Web Store'
 [link-amo]: https://addons.mozilla.org/en-US/firefox/addon/github-project-story-points/ 'Version published on Mozilla Add-ons'
 
 ### Credits
