@@ -1,5 +1,4 @@
 <div align="center">
-  <img src="assets/logo.png" alt="github-story-points" width="600">
   <br>
   <b>Browser extension to add story points to GitHub projects</b>
   <hr>
