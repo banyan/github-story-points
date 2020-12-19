@@ -11,9 +11,14 @@
 
 ### Usage
 
-You can now add story points to your project board easily. Either create your issue with a title starting with `[Xpt]` or simply add a label `sp: X`.
+Add story points to your project board easily.
 
-GSP woill count them for you and even show `Closed/Total`.
+- For issues, either create your issue with a title starting with `[Xpt]` or simply add a label `sp: X`.
+- For cards, simply add a point estimate in the body using the `[Xpt]` format.
+
+GitHub Story Point will count them for you and even show `Closed/Total`.
+
+NOTE - For each task/card, GSP will only count the first point estimate it can find.
 
 ![Example](./assets/images/example.png)
 
