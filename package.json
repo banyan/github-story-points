@@ -3,7 +3,8 @@
     "typecheck": "tsc --noEmit",
     "build": "node fuse.js",
     "build:watch": "node fuse --variant watch",
-    "build:zip": "yarn build && rm -f github-story-points.zip && zip -r github-story-points.zip dist manifest.json assets/images"
+    "build:zip:chrome": "yarn build && rm -f github-story-points-chrome.zip && zip -r github-story-points-chrome.zip dist manifest.json assets/images",
+    "build:zip:firefox": "yarn build && rm -f github-story-points-firefox.zip && zip -r github-story-points-firefox.zip --exclude=node_modules/* --exclude=github-story-points-*.zip ."
   },
   "dependencies": {
     "webext-domain-permission-toggle": "^1.0.0",
