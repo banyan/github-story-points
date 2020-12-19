@@ -11,7 +11,7 @@
 
 ### Usage
 
-You can now add story points to your project board easily.
+Add story points to your project board easily.
 
 - For issues, either create your issue with a title starting with `[Xpt]` or simply add a label `sp: X`.
 - For cards, simply add a point estimate in the body using the `[Xpt]` format.
