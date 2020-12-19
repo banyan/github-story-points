@@ -3,7 +3,7 @@
   "name": "GitHub Story Points",
   "description": "Chrome extension to add story points to GitHub projects",
   "short_name": "GitHub Story Points",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "author": "Eric Boucher",
   "homepage_url": "https://github.com/oviohub/github-story-points",
   "icons": {
